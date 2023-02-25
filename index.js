@@ -26,7 +26,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-mongodb.set("strictQuery", false);
+mongodb.set("strictQuery", true);
 mongodb
   .connect(process.env.URL_MONGOODB_WEBSERVER, {
     useNewUrlParser: true,
