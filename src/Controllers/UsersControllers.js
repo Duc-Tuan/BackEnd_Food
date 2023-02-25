@@ -107,7 +107,7 @@ const loginUser = async (req, res, next) => {
     //   httpOnly: true,
     // });
 
-    res.setHeader("Set-Cookie", "cookieName=cookieValue; HttpOnly");
+    res.setHeader("SetCookie", "cookieName=cookieValue; HttpOnly");
 
     const dataUser = validateToken(accessToken);
     const dataCarts = await Carts.findById({ _id: dataUser.carts });
