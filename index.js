@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-// const users = require("./Routers/UsersRouter");
+const users = require("./Routers/UsersRouter");
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
@@ -35,7 +35,7 @@ mongodb
   .then(() => console.log("connection success"))
   .catch((error) => console.error(`connection failed ${error}`));
 
-// app.use("/users", users);
+app.use("/users", users);
 
 // Router
 app.get("/", (req, res) => {
