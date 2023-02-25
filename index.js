@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
 
 // mongodb.set("strictQuery", false);
 mongodb
-  .connect(process.env.URL_MONGOODB, {
+  .connect(process.env.URL_MONGOODB_WEBSERVER, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
