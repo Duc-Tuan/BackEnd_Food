@@ -7,6 +7,10 @@ const app = express();
 
 // const users = require("./Routers/UsersRouter");
 
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+app.use(bodyParser.json({ limit: "50mb" }));
+
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -31,17 +35,11 @@ mongodb
   .then(() => console.log("connection success"))
   .catch((error) => console.error(`connection failed ${error}`));
 
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-app.use(bodyParser.json({ limit: "50mb" }));
-
 // app.use("/users", users);
 
 // Router
-app.get("/", (req, res, next) => {
-  return res.status(200).json({
-    message: "Server is OK!",
-  });
+app.get("/", (req, res) => {
+  return res.send("SERVER ON");
 });
 
 //catch 404 error and forward to error handler
@@ -64,5 +62,5 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 3036;
-app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server is listening on port ${port}`));
