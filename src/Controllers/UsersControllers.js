@@ -102,10 +102,12 @@ const loginUser = async (req, res, next) => {
     const { user_pass, ...other } = user._doc;
     const accessToken = createTokens({ ...other });
 
-    res.cookie("accessToken", accessToken, {
-      maxAge: 60 * 60 * 24 * 30 * 1000,
-      httpOnly: true,
-    });
+    // res.cookie("accessToken", accessToken, {
+    //   maxAge: 60 * 60 * 24 * 30 * 1000,
+    //   httpOnly: true,
+    // });
+
+    res.setHeader("Set-Cookie", "cookieName=cookieValue; HttpOnly");
 
     const dataUser = validateToken(accessToken);
     const dataCarts = await Carts.findById({ _id: dataUser.carts });
@@ -116,7 +118,6 @@ const loginUser = async (req, res, next) => {
       dataHistoriess,
       dataPays,
     };
-    res.cookie("token", accessToken);
     return res.status(200).json({
       mess: "Đăng nhập thành công!!!",
       status: true,
