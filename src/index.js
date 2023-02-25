@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-const users = require("./Routers/UsersRouter");
+// const users = require("./Routers/UsersRouter");
 
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-mongodb.set("strictQuery", false);
+// mongodb.set("strictQuery", false);
 mongodb
   .connect(process.env.URL_MONGOODB, {
     useNewUrlParser: true,
@@ -35,7 +35,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(bodyParser.json({ limit: "50mb" }));
 
-app.use("/users", users);
+// app.use("/users", users);
 
 // Router
 app.get("/", (req, res, next) => {
