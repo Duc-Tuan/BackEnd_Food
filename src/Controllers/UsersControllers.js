@@ -106,9 +106,6 @@ const loginUser = async (req, res, next) => {
     //   maxAge: 60 * 60 * 24 * 30 * 1000,
     //   httpOnly: true,
     // });
-
-    res.setHeader("SetCookie", "cookieName=cookieValue; HttpOnly");
-
     const dataUser = validateToken(accessToken);
     const dataCarts = await Carts.findById({ _id: dataUser.carts });
     const dataHistoriess = await History.findById({ _id: dataUser.histories });
